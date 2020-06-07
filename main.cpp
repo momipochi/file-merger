@@ -10,8 +10,8 @@ int main() {
     ofstream out;
     ifstream fileA,fileB;
     vector<string> v;
-    fileA.open("D:\\pjatk\\SecondSemester\\ppc\\C++\\Project\\Book1.csv");
-    fileB.open("D:\\pjatk\\SecondSemester\\ppc\\C++\\Project\\Book2.csv");
+    fileA.open("Book1.csv");
+    fileB.open("Book2.csv");
 
 
     if(fileA.is_open() || fileB.is_open()){
