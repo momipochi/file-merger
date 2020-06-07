@@ -77,7 +77,7 @@ int main() {
     }
 
 
-    out.open("D:\\pjatk\\SecondSemester\\ppc\\C++\\Project\\merge.csv");
+    out.open("merge.csv");
     if(out.is_open()){
         for(string str:v){
             out<<str<<"\n";
