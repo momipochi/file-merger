@@ -16,64 +16,21 @@ int main() {
 
     if(fileA.is_open() || fileB.is_open()){
         string lineA,lineB;
-
-
         bool key1 = true, key2=true;
         while(key1 || key2){
-            string lineBuild ="";
-            vector<string> tmpA;
-            vector<string> tmpB;
-            if(getline(fileA,lineA)){
-
-                stringstream a(lineA);
-                string wordA;
-                while(getline(a,wordA,',')){
-                    tmpA.push_back(wordA);
-                }
+            string row ="";
+            if(getline(fileA,lineA,'\n')){
+                row += lineA+",";
             }else{
-                key1 = false;
+                key1=false;
             }
-            if(getline(fileB,lineB)){
-                stringstream b(lineB);
-                string wordB;
-                while(getline(b,wordB,',')){
-                    tmpB.push_back(wordB);
-                }
-
+            if(getline(fileB,lineB,'\n')){
+                row += lineB;
             }else{
-                key2 = false;
+                key2=false;
             }
-
-            if(tmpA.size() == 0){
-                for(string str:tmpB){
-                    lineBuild += str+",";
-                }
-            }else if(tmpB.size() == 0){
-                for(string str:tmpA){
-                    lineBuild += str+",";
-                }
-            }else if(tmpA.size()>=tmpB.size()){
-                for(int i = 0;i<tmpB.size();i++){
-                    lineBuild += tmpA[i]+" "+tmpB[i]+",";
-                    if((tmpB.size()-i) == 1){
-                        for(int k = i+1;k<tmpA.size();k++){
-                            lineBuild+=tmpA[k]+",";
-                        }
-                    }
-                }
-            }else if(tmpA.size()<=tmpB.size()){
-                for(int i = 0;i<tmpA.size();i++){
-                    lineBuild += tmpA[i]+" "+tmpB[i]+",";
-                    if((tmpA.size()-i) == 1){
-                        for(int k = i+1; k<tmpB.size();k++){
-                            lineBuild+=tmpB[k]+",";
-                        }
-                    }
-                }
-            }
-
-            v.push_back(lineBuild);
-        }
+            v.push_back(row);
+        };
     }
 
 
