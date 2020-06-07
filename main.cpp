@@ -88,8 +88,6 @@ int main() {
     for(string str:v){
         cout<<str<<endl;
     }
-    string b = "fuck you";
 
-    cout<<b[1]<<endl;
     return 0;
 }
