@@ -17,26 +17,28 @@ namespace vecBuild{
 }
 enum Order{A_to_B=1,B_to_A=2};
 class File_merger{
+    struct Content{
+        string dirA,dirB;
+    };
+    Content files;
 public:
     ofstream out;
     ifstream fileA,fileB;
-    string dirA,dirB,merge_dir;
+    string merge_dir;
     int maxLength = 0;
-    File_merger(string dirA, string dirB,string save,int num){
+    File_merger(string a, string b,string save,int num){
         if(num == Order::A_to_B){
-            this->dirA = dirA;
-            this->dirB = dirB;
+            files = Content{a,b};
         }
         if(num == Order::B_to_A){
-            this->dirA = dirB;
-            this->dirB = dirA;
+            files = Content{b,a};
         }
         this->merge_dir = save;
     }
 
     void checkLength(){
-        fileA.open(dirA);
-        fileB.open(dirB);
+        fileA.open(files.dirA);
+        fileB.open(files.dirB);
         if(fileA.is_open() || fileB.is_open()) {
             bool lock1 = true, lock2 = true;
             while (lock1 || lock2) {
@@ -74,6 +76,7 @@ public:
                 tmpB.clear();
             }
         }
+        cout<<maxLength<<endl;
         fileA.close();
         fileB.close();
     }
@@ -95,9 +98,8 @@ public:
     }
 
     void cellBuild() {
-        fileA.open(dirA);
-        fileB.open(dirB);
-
+        fileA.open(files.dirA);
+        fileB.open(files.dirB);
 
         if (fileA.is_open() || fileB.is_open()) {
             bool key1 = true, key2 = true;
